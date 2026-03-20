@@ -14,8 +14,10 @@ Os dados ficam apenas em memória durante a execução do app (ao reiniciar, as 
 - Listagem de transações
 - Remoção de transações
 - Gráfico/resumo dos gastos por dia (últimos 7 dias)
+- Interface responsiva: alterna entre gráfico e lista no modo paisagem
 
 ## Como rodar
+
 
 Pré-requisitos: Flutter SDK instalado e um device/emulador configurado (Android/iOS/Web/Desktop).
 

@@ -42,75 +42,79 @@ class _TransactionFormState extends State<TransactionForm> {
         setState(() {
           _selectedDate = pickedDate;
         });
-
-        print(_selectedDate);
       });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            TextField(
-              controller: _titleController,
-              onSubmitted: (value) => _submitForm(),
-              decoration: InputDecoration(labelText: 'Título'),
-            ),
-            TextField(
-              keyboardType: TextInputType.numberWithOptions(),
-              onSubmitted: (value) => _submitForm(),
-              controller: _valueController,
-              decoration: InputDecoration(labelText: 'Valor R\$'),
-            ),
-            Container(
-              height: 70,
-
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Data selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}'),
-                  ),
-                  TextButton(
-                    onPressed: _showDatePicker,
-                    style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.primary,
+    return SingleChildScrollView(
+      child: Container(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: [
+              TextField(
+                controller: _titleController,
+                onSubmitted: (value) => _submitForm(),
+                decoration: InputDecoration(labelText: 'Título'),
+              ),
+              TextField(
+                keyboardType: TextInputType.numberWithOptions(),
+                onSubmitted: (value) => _submitForm(),
+                controller: _valueController,
+                decoration: InputDecoration(labelText: 'Valor R\$'),
+              ),
+              Container(
+                height: 70,
+      
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Data selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}'),
                     ),
-                    child: Text(
-                      'Selecionar data',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                    TextButton(
+                      onPressed: _showDatePicker,
+                      style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).colorScheme.primary,
                       ),
+                      child: Text(
+                        'Selecionar data',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                        )
+                    ),
+                ],),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: _submitForm,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero
                       )
-                  ),
-              ],),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: _submitForm,
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero
-                    )
-                  ),
-                  child: Text(
-                    'Nova transação',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold
+                    ),
+                    child: Text(
+                      'Nova transação',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
